@@ -1,0 +1,7 @@
+#!/bin/sh
+# cp scripts/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+set -e
+python3 scripts/build_index.py
+bash scripts/sync_agents.sh >/dev/null
+python3 scripts/brain_lint.py
+git add notes/INDEX.md people/INDEX.md projects/INDEX.md CLAUDE.md GEMINI.md AGENTS.md
